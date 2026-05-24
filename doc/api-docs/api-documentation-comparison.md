@@ -30,14 +30,14 @@ flowchart LR
   end
 
   subgraph FastAPI["FastAPI (Python)"]
-    P[Pydantic 모델 + Field] -->|app.openapi()| J2[/openapi.json]
-    J2 --> SW2[/docs Swagger UI]
+    P[Pydantic 모델 + Field] -->|app.openapi| J2["/openapi.json"]
+    J2 --> SW2["/docs Swagger UI"]
     J2 -->|export_openapi.py| Y2[openapi.yaml]
   end
 
   subgraph NestJS["NestJS (TypeScript)"]
-    D[DTO + @ApiProperty] -->|SwaggerModule| J3[/docs-json]
-    J3 --> SW3[/docs Swagger UI]
+    D[DTO + @ApiProperty] -->|SwaggerModule| J3["/docs-json"]
+    J3 --> SW3["/docs Swagger UI"]
   end
 ```
 
