@@ -31,7 +31,7 @@
 로컬 실행을 위해 아래 환경이 필요합니다:
 - **Docker & Docker Compose**: PostgreSQL 컨테이너 구동용
 - **Java JDK 17 이상**: Spring Boot 백엔드 구동용
-- **Node.js (v18+) & npm**: React 프론트엔드 구동용
+- **Node.js (v18+) & pnpm**: React 및 NestJS 구동용 (글로벌 설치: `npm install -g pnpm`)
 
 ---
 
@@ -99,32 +99,40 @@ python app.py
 - **API 동작**: FastAPI와 완벽히 대응되는 엔드포인트 세트 제공.
 
 #### 🟠 Option D. NestJS (TypeScript) 백엔드 실행
-백엔드 루트 디렉토리 `/backends/nestjs`로 이동한 후 간편 실행 스크립트를 구동합니다. (Prisma Client 빌드 및 개발용 리로드 서버 실행을 자동으로 수행합니다.)
-```bash
-cd backends/nestjs
-./run.sh
-```
-
-또는 수동으로 Prisma Client를 빌드하고 구동할 수도 있습니다:
-```bash
-cd backends/nestjs
-npx prisma generate
-npm run start:dev
-```
+- **방법 1 (권장)**: 프로젝트 루트 디렉토리에서 글로벌 필터 명령어로 원클릭 구동합니다.
+  ```bash
+  pnpm dev:nest
+  ```
+- **방법 2**: 백엔드 루트 디렉토리 `/backends/nestjs`로 이동하여 가동합니다.
+  ```bash
+  cd backends/nestjs
+  ./run.sh
+  ```
+  *(또는 수동 실행: `npx prisma generate && pnpm start:dev`)*
 - **서버 URL**: `http://localhost:3333`
 - **API 동작**: Prisma ORM 기반 최적화 쿼리 및 class-validator 완벽 적용.
 
 ---
 
 ### 3단계. 프론트엔드 실행
-프론트엔드 루트 디렉토리 `/frontend/react`로 이동한 후 의존성을 설치하고 개발 서버를 구동합니다.
+
+먼저 프로젝트 루트 디렉토리에서 **최초 1회 통합 의존성을 설치**해 줍니다. (pnpm 워크스페이스가 하위 모듈들을 병렬 초고속 설치합니다.)
 ```bash
-cd frontend/react
-npm install
-npm run dev
+pnpm install
 ```
+
+의존성 설치가 완료되면 아래 방법으로 프론트엔드를 실행합니다.
+- **방법 1 (권장)**: 프로젝트 루트 디렉토리에서 글로벌 필터 명령어로 구동합니다.
+  ```bash
+  pnpm dev:react
+  ```
+- **방법 2**: 프론트엔드 디렉토리 `/frontend/react`로 직접 이동하여 구동합니다.
+  ```bash
+  cd frontend/react
+  pnpm dev
+  ```
 - **접속 URL**: [http://localhost:5173](http://localhost:5173)
-- **백엔드 변경 방법**: 웹 UI 상단 우측의 **⚙️(설정 아이콘)**을 클릭하여 Spring Boot(`8080`) 또는 Python(`8000`) 백엔드로 실시간 커넥션을 스위칭할 수 있습니다.
+- **백엔드 변경 방법**: 웹 UI 상단 우측의 **⚙️(설정 아이콘)**을 클릭하여 Spring Boot(`8080`), FastAPI(`8000`), Flask(`5000`), NestJS(`3333`) 백엔드로 실시간 커넥션을 스위칭할 수 있습니다.
 
 ---
 
