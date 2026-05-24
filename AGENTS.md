@@ -15,9 +15,6 @@ Whenever the user requests you to write, add, or summarize technical concepts or
 - **자연스러운 문체**: 극단적인 명사형 종결을 강제하지 않으며, 의미 전달이 명확하고 자연스러운 문체를 사용합니다.
 
 ### 📂 Save Path & Naming
-- **Study Docs (학습/기술 문서)**
-  - 경로: `doc/study/YYYY-MM-DD-topic-slug.md`
-  - 내용: 주제에 대한 핵심 요약, 기존 방식과의 비교, 주요 동작 원리 위주로 유연하게 작성합니다.
 - **Troubleshooting Logs (트러블슈팅/에러 해결 문서)**
   - 경로: `doc/troubleshooting/YYYY-MM-DD-error-slug.md`
   - 내용: 유연하게 구성하되, **발생한 문제(Issue)**와 **해결 프로세스(Resolution)** 두 가지 파트는 명확히 분리하여 포함해야 합니다.

@@ -32,6 +32,7 @@
       "**/__pycache__": true,
       "**/.idea": true,
       "**/.gradle": true
-    }
+    },
+    "java.compile.nullAnalysis.mode": "automatic"
   }
 }
