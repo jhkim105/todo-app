@@ -1,0 +1,10 @@
+{
+  "name": "todo-app-monorepo",
+  "private": true,
+  "scripts": {
+    "dev:react": "pnpm --filter react dev",
+    "dev:nest": "pnpm --filter nestjs start:dev",
+    "build:all": "pnpm --filter react build && pnpm --filter nestjs build",
+    "install:all": "pnpm install"
+  }
+}
