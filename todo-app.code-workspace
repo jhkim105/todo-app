@@ -1,0 +1,37 @@
+{
+  "folders": [
+    {
+      "name": "📂 Project Root",
+      "path": "."
+    },
+    {
+      "name": "🟢 Spring Boot (Kotlin)",
+      "path": "backends/spring-kotlin"
+    },
+    {
+      "name": "🔵 FastAPI (Python)",
+      "path": "backends/fastapi"
+    },
+    {
+      "name": "🟡 Flask (Python)",
+      "path": "backends/flask"
+    },
+    {
+      "name": "🟠 NestJS (TypeScript)",
+      "path": "backends/nestjs"
+    },
+    {
+      "name": "🟣 React Frontend",
+      "path": "frontend/react"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.git": true,
+      "**/.DS_Store": true,
+      "**/__pycache__": true,
+      "**/.idea": true,
+      "**/.gradle": true
+    }
+  }
+}

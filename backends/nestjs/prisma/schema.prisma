@@ -1,0 +1,30 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Category {
+  id    BigInt @id @default(autoincrement()) @map("id")
+  name  String @map("name") @db.VarChar(255)
+  color String @map("color") @db.VarChar(255)
+  tasks Task[]
+
+  @@map("categories")
+}
+
+model Task {
+  id          BigInt    @id @default(autoincrement()) @map("id")
+  title       String    @map("title") @db.VarChar(255)
+  description String?   @map("description") @db.Text
+  completed   Boolean   @default(false) @map("completed")
+  dueDate     DateTime? @map("due_date") @db.Timestamptz(6)
+  priority    String    @default("MEDIUM") @map("priority") @db.VarChar(255)
+  categoryId  BigInt?   @map("category_id")
+  category    Category? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@map("tasks")
+}

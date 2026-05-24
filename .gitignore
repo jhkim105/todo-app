@@ -1,0 +1,52 @@
+# OS-specific files
+.DS_Store
+Thumbs.db
+db.sqlite3
+
+# Python Virtual Environments & Cache
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Node.js / React / NestJS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dist/
+.nest/
+.next/
+out/
+
+# Kotlin / Java / Gradle / Spring Boot
+.gradle/
+build/
+bin/
+out/
+.idea/
+*.class
+*.log
+*.tar
+*.zip
+*.war
+*.ear
+
+# Environment & Private configurations
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Database local data
+postgres_data/
+
+# IDE configurations that are user-specific (keep .code-workspace only)
+.vscode/*
+!.vscode/settings.json
