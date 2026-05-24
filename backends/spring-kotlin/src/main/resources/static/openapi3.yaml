@@ -1,0 +1,347 @@
+openapi: 3.0.1
+info:
+  title: Todo API
+  description: Spring RestDocs + epages OpenAPI 3.0
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+tags: []
+paths:
+  /api/categories:
+    get:
+      tags:
+      - api
+      summary: Get category list
+      description: Get category list
+      operationId: get-categories
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-categories-215775306"
+              examples:
+                get-categories:
+                  value: "[{\"id\":1,\"name\":\"Work\",\"color\":\"#FF5733\"},{\"\
+                    id\":2,\"name\":\"Personal\",\"color\":\"#33FF57\"}]"
+    post:
+      tags:
+      - api
+      summary: Create new category
+      description: Create new category
+      operationId: create-category
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-categories63799787"
+            examples:
+              create-category:
+                value: "{\"name\":\"Study\",\"color\":\"#3357FF\"}"
+      responses:
+        "201":
+          description: "201"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-categories-240866391"
+              examples:
+                create-category:
+                  value: "{\"id\":3,\"name\":\"Study\",\"color\":\"#3357FF\"}"
+  /api/tasks:
+    get:
+      tags:
+      - api
+      summary: Get task list
+      description: Get task list
+      operationId: get-tasks
+      parameters:
+      - name: categoryId
+        in: query
+        description: Filter by category ID (Optional)
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-tasks82073136"
+              examples:
+                get-tasks:
+                  value: "[{\"id\":1,\"title\":\"Submit Report\",\"description\":\"\
+                    Quarterly financial report\",\"completed\":false,\"dueDate\":\"\
+                    2026-05-31T23:59:59+09:00\",\"priority\":\"HIGH\",\"category\"\
+                    :{\"id\":1,\"name\":\"Work\",\"color\":\"#FF5733\"}}]"
+    post:
+      tags:
+      - api
+      summary: Create a new task
+      description: Create a new task
+      operationId: create-task
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-tasks-id1051719704"
+            examples:
+              create-task:
+                value: "{\"title\":\"Buy Milk\",\"description\":\"Go to grocery store\"\
+                  ,\"completed\":false,\"dueDate\":\"2026-05-25T18:00:00+09:00\",\"\
+                  priority\":\"LOW\",\"categoryId\":1}"
+      responses:
+        "201":
+          description: "201"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-tasks-id1137821527"
+              examples:
+                create-task:
+                  value: "{\"id\":2,\"title\":\"Buy Milk\",\"description\":\"Go to\
+                    \ grocery store\",\"completed\":false,\"dueDate\":\"2026-05-25T18:00:00+09:00\"\
+                    ,\"priority\":\"LOW\",\"category\":{\"id\":1,\"name\":\"Work\"\
+                    ,\"color\":\"#FF5733\"}}"
+  /api/categories/{id}:
+    delete:
+      tags:
+      - api
+      summary: Delete category by ID
+      description: Delete category by ID
+      operationId: delete-category
+      parameters:
+      - name: id
+        in: path
+        description: Category ID to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: "204"
+  /api/tasks/{id}:
+    put:
+      tags:
+      - api
+      summary: Update existing task
+      description: Update existing task
+      operationId: update-task
+      parameters:
+      - name: id
+        in: path
+        description: Task ID to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-tasks-id1051719704"
+            examples:
+              update-task:
+                value: "{\"title\":\"Submit Report Updated\",\"description\":\"Quarterly\
+                  \ financial report with edits\",\"completed\":true,\"dueDate\":\"\
+                  2026-05-31T23:59:59+09:00\",\"priority\":\"HIGH\",\"categoryId\"\
+                  :1}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-tasks-id1137821527"
+              examples:
+                update-task:
+                  value: "{\"id\":1,\"title\":\"Submit Report Updated\",\"description\"\
+                    :\"Quarterly financial report with edits\",\"completed\":true,\"\
+                    dueDate\":\"2026-05-31T23:59:59+09:00\",\"priority\":\"HIGH\"\
+                    ,\"category\":{\"id\":1,\"name\":\"Work\",\"color\":\"#FF5733\"\
+                    }}"
+    delete:
+      tags:
+      - api
+      summary: Delete task by ID
+      description: Delete task by ID
+      operationId: delete-task
+      parameters:
+      - name: id
+        in: path
+        description: Task ID to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: "204"
+components:
+  schemas:
+    api-tasks82073136:
+      type: array
+      items:
+        required:
+        - completed
+        - id
+        - priority
+        - title
+        type: object
+        properties:
+          dueDate:
+            type: string
+            description: Due Date (ISO-8601)
+            nullable: true
+          description:
+            type: string
+            description: Task Description
+            nullable: true
+          completed:
+            type: boolean
+            description: Completion Status
+          id:
+            type: number
+            description: Task ID
+          category:
+            required:
+            - color
+            - id
+            - name
+            type: object
+            properties:
+              color:
+                type: string
+                description: Category Color
+              name:
+                type: string
+                description: Category Name
+              id:
+                type: number
+                description: Category ID
+            description: Associated Category
+          priority:
+            type: string
+            description: "Priority (LOW, MEDIUM, HIGH)"
+          title:
+            type: string
+            description: Task Title
+    api-categories-215775306:
+      type: array
+      items:
+        required:
+        - color
+        - id
+        - name
+        type: object
+        properties:
+          color:
+            type: string
+            description: Category Color Hex
+          name:
+            type: string
+            description: Category Name
+          id:
+            type: number
+            description: Category ID
+    api-tasks-id1137821527:
+      required:
+      - completed
+      - id
+      - priority
+      - title
+      type: object
+      properties:
+        dueDate:
+          type: string
+          description: Due Date (ISO-8601)
+          nullable: true
+        description:
+          type: string
+          description: Task Description
+          nullable: true
+        completed:
+          type: boolean
+          description: Completion Status
+        id:
+          type: number
+          description: Task ID
+        category:
+          required:
+          - color
+          - id
+          - name
+          type: object
+          properties:
+            color:
+              type: string
+              description: Category Color
+            name:
+              type: string
+              description: Category Name
+            id:
+              type: number
+              description: Category ID
+          description: Associated Category
+        priority:
+          type: string
+          description: "Priority (LOW, MEDIUM, HIGH)"
+        title:
+          type: string
+          description: Task Title
+    api-categories63799787:
+      required:
+      - color
+      - name
+      type: object
+      properties:
+        color:
+          type: string
+          description: Category Color Hex
+        name:
+          type: string
+          description: Category Name
+    api-tasks-id1051719704:
+      required:
+      - completed
+      - priority
+      - title
+      type: object
+      properties:
+        dueDate:
+          type: string
+          description: Due Date (ISO-8601)
+          nullable: true
+        description:
+          type: string
+          description: Task Description
+          nullable: true
+        completed:
+          type: boolean
+          description: Completion Status
+        priority:
+          type: string
+          description: "Priority (LOW, MEDIUM, HIGH)"
+        title:
+          type: string
+          description: Task Title
+        categoryId:
+          type: number
+          description: Category ID
+          nullable: true
+    api-categories-240866391:
+      required:
+      - color
+      - id
+      - name
+      type: object
+      properties:
+        color:
+          type: string
+          description: Category Color Hex
+        name:
+          type: string
+          description: Category Name
+        id:
+          type: number
+          description: Created Category ID
