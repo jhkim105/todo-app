@@ -1,34 +1,25 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsBoolean, IsOptional, IsEnum, IsNumber } from 'class-validator';
+import { CategoryResponse } from '../../category/dto/category-response.dto';
 
-export class TaskRequest {
+export class TaskResponse {
+  @ApiProperty({ description: 'Task ID', example: 1 })
+  id: number;
+
   @ApiProperty({ description: 'Task 제목', example: 'Submit Report' })
-  @IsNotEmpty()
-  @IsString()
   title: string;
 
   @ApiPropertyOptional({ description: 'Task 상세 설명', example: 'Quarterly financial report' })
-  @IsOptional()
-  @IsString()
   description?: string;
 
   @ApiProperty({ description: '완료 여부', example: false })
-  @IsNotEmpty()
-  @IsBoolean()
   completed: boolean;
 
   @ApiPropertyOptional({ description: '마감일 (ISO-8601)', example: '2026-05-31T23:59:59+09:00' })
-  @IsOptional()
-  @IsString()
   dueDate?: string;
 
   @ApiProperty({ description: '우선순위', enum: ['LOW', 'MEDIUM', 'HIGH'], example: 'HIGH' })
-  @IsNotEmpty()
-  @IsEnum(['LOW', 'MEDIUM', 'HIGH'])
-  priority: 'LOW' | 'MEDIUM' | 'HIGH';
+  priority: string;
 
-  @ApiPropertyOptional({ description: '연결할 카테고리 ID', example: 1 })
-  @IsOptional()
-  @IsNumber()
-  categoryId?: number;
+  @ApiPropertyOptional({ description: '연결된 카테고리', type: () => CategoryResponse })
+  category?: CategoryResponse;
 }

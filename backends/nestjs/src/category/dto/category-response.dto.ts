@@ -1,14 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
 
-export class CategoryRequest {
+export class CategoryResponse {
+  @ApiProperty({ description: '카테고리 ID', example: 1 })
+  id: number;
+
   @ApiProperty({ description: '카테고리 이름', example: 'Work' })
-  @IsNotEmpty()
-  @IsString()
   name: string;
 
   @ApiProperty({ description: '카테고리 색상 Hex 코드', example: '#FF5733' })
-  @IsNotEmpty()
-  @IsString()
   color: string;
 }
