@@ -17,5 +17,5 @@ Whenever the user requests you to write, add, or summarize technical concepts or
 
 ### 📂 Save Path & Naming
 - **Troubleshooting Logs (트러블슈팅/에러 해결 문서)**
-  - 경로: `doc/troubleshooting/YYYY-MM-DD-error-slug.md`
+  - 경로: `docs/troubleshooting/YYYY-MM-DD-error-slug.md`
   - 내용: 유연하게 구성하되, **발생한 문제(Issue)**와 **해결 프로세스(Resolution)** 두 가지 파트는 명확히 분리하여 포함해야 합니다.
